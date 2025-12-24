@@ -1,0 +1,6 @@
+@Nivo.API_HostAddress = http://localhost:5195
+
+GET {{Nivo.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
