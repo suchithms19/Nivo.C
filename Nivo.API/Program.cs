@@ -9,19 +9,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+    options.UseSqlServer(builder.Configuration.GetConnectionString("NivoConnectionString")));
+    
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<AppointmentService>();
 
-builder.Services.AddOpenApi();
+Nivo.API.Extensions.OpenApiExtensions.AddOpenApi(builder.Services);
 
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    Nivo.API.Extensions.OpenApiExtensions.MapOpenApi(app);
 }
 
 app.UseHttpsRedirection();
