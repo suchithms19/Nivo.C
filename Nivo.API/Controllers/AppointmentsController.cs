@@ -35,11 +35,11 @@ namespace Nivo.API.Controllers
             {
                 return BadRequest(new { error = ex.Message });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, new { error = "Something went wrong" });
             }
         }
         }
     }
-}
+
