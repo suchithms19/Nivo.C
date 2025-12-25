@@ -26,9 +26,7 @@ namespace Nivo.API.Controllers
 
                 return Ok(new
                 {
-                    message = "Appointment booked successfully",
-                    appointment,
-                    patient
+                    message = "Appointment booked successfully"
                 });
             }
             catch (InvalidOperationException ex)
