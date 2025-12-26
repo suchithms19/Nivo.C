@@ -6,5 +6,7 @@ namespace Nivo.API.Repositories.Interface
     {
         Task<Appointment?> FindScheduledByUserAndStartTimeAsync(string userId, DateTime startTime);
         Task AddAsync(Appointment appointment);
+        Task<IEnumerable<Appointment>> GetAllAsync();
+        Task<Appointment?> GetByIdAsync(Guid id);
     }
 }

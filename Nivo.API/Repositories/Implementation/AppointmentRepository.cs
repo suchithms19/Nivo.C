@@ -2,6 +2,8 @@
 using Nivo.API.Models.Domain;
 using Nivo.API.Repositories.Interface;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,6 +32,22 @@ namespace Nivo.API.Repositories.Implementation
         public async Task AddAsync(Appointment appointment)
         {
             await _context.Appointments.AddAsync(appointment);
+        }
+
+        public async Task<IEnumerable<Appointment>> GetAllAsync()
+        {
+            return await _context.Appointments
+                .AsNoTracking()
+                .Include(a => a.Patient)
+                .ToListAsync();
+        }
+
+        public async Task<Appointment?> GetByIdAsync(Guid id)
+        {
+            return await _context.Appointments
+                .AsNoTracking()
+                .Include(a => a.Patient)
+                .FirstOrDefaultAsync(a => a.Id == id);
         }
     }
 }

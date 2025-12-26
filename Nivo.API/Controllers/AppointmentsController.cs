@@ -38,6 +38,40 @@ namespace Nivo.API.Controllers
                 return StatusCode(500, new { error = "Something went wrong" });
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllAppointments()
+        {
+            try
+            {
+                var appointments = await _appointmentService.GetAllAppointmentsAsync();
+
+                return Ok(appointments);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "Something went wrong" });
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetAppointmentById(Guid id)
+        {
+            try
+            {
+                var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
+
+                if (appointment == null)
+                {
+                    return NotFound(new { error = "Appointment not found" });
+                }
+
+                return Ok(appointment);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { error = "Something went wrong" });
+            }
         }
     }
 
