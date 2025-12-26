@@ -99,19 +99,15 @@ namespace Nivo.API.Services
             {
                 Id = appointment.Id,
                 UserId = appointment.UserId,
-                PatientId = appointment.PatientId,
                 StartTime = appointment.StartTime,
                 EndTime = appointment.EndTime,
                 Status = appointment.Status,
                 Patient = appointment.Patient == null ? null : new PatientDto
                 {
                     Id = appointment.Patient.Id,
-                    UserId = appointment.Patient.UserId,
                     Name = appointment.Patient.Name,
                     PhoneNumber = appointment.Patient.PhoneNumber,
                     Age = appointment.Patient.Age,
-                    EntryTime = appointment.Patient.EntryTime,
-                    Date = appointment.Patient.Date,
                     SelfRegistered = appointment.Patient.SelfRegistered
                 }
             };
