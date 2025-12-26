@@ -22,7 +22,7 @@ namespace Nivo.API.Controllers
         {
             try
             {
-                var (appointment, patient) = await _appointmentService.BookAppointmentAsync(userId, dto);
+                await _appointmentService.BookAppointmentAsync(userId, dto);
 
                 return Ok(new
                 {

@@ -27,7 +27,7 @@ namespace Nivo.API.Services
             _context = context;
         }
 
-        public async Task<(Appointment appointment, Patient patient)> BookAppointmentAsync(string userId, BookAppointmentDto dto)
+        public async Task BookAppointmentAsync(string userId, BookAppointmentDto dto)
         {
             var appointmentStartTime = dto.StartTime;
 
@@ -71,8 +71,6 @@ namespace Nivo.API.Services
                 await _context.SaveChangesAsync();
 
                 await transaction.CommitAsync();
-
-                return (appointment, patient);
             }
             catch
             {
